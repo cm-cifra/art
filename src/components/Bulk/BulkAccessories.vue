@@ -1,6 +1,8 @@
 <template>
   <div class="p-6 bg-gray-50 min-h-screen">
-    <h1 class="text-2xl font-bold mb-4">Bulk Upload Bathroom Accessories</h1>
+    <h1 class="text-2xl font-bold mb-4">
+      Bulk Upload Аксессуары для ванной комнаты
+    </h1>
 
     <div class="border-2 border-dashed border-gray-400 rounded-md p-4">
       <!-- File Input -->
@@ -60,7 +62,7 @@ export default {
         Аксессуары: "accessories",
         Гарантия: "guarantee",
         "Вес упаковки, кг": "package_weight",
-        Артикул: "article_num",
+        Артикул: "sku",
         "Артикул от завода": "factory_part_num",
         Коллекция: "collection",
         Название: "name",
@@ -150,7 +152,7 @@ export default {
               products.push({
                 id: uniqueId,
                 name: mappedRow.name || `Unnamed Product ${index}`, // Handle missing names.
-                article_num: mappedRow.article_num,
+                sku: mappedRow.sku,
                 product_image: mappedRow.product_image || "",
                 factory_part_num: mappedRow.factory_part_num || "",
                 category_id: "1",

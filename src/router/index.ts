@@ -59,7 +59,7 @@ const routes = [
       }, {
         path: '/create_bulk',
         alias: '/create_bulk',
-        component: () => import('../components/Bulk/BulkAccessories.vue'),
+        component: () => import('../components/Bulk/BulkView.vue'),
         meta: { title: 'Create Product', ParentName: 'Home'}
       },
       {

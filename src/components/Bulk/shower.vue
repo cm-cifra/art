@@ -59,7 +59,7 @@ export default {
         Опции: "options",
         Аксессуары: "accessories",
         Гарантия: "guarantee",
-        Артикул: "article_num",
+        Артикул: "sku",
         "Артикул от завода": "factory_part_num",
         Коллекция: "collection",
         Название: "name",
@@ -175,7 +175,7 @@ export default {
               products.push({
                 id: uniqueId,
                 name: mappedRow.name || `Unnamed Product ${index}`, // Handle missing names.
-                article_num: mappedRow.article_num,
+                sku: mappedRow.sku,
                 product_image: mappedRow.product_image || "",
                 factory_part_num: mappedRow.factory_part_num || "",
                 category_id: "1",

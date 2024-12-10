@@ -90,7 +90,7 @@ export default {
       currentUniqueId: 1000, // Start ID from a reasonable number
       csvToDbMap: {
         Item: "Артикул",
-        "Артикул от завода": "article_num",
+        "Артикул от завода": "sku",
         Коллекция: "collection",
         Название: "name",
         "Изделие (Оснащение)": "product_equipment",
@@ -217,7 +217,7 @@ export default {
               const product = {
                 id: uniqueId,
                 name: mappedRow.name || "Unnamed Product",
-                article_num: mappedRow.article_num,
+                sku: mappedRow.sku,
                 product_image: mappedRow.product_image || "",
                 category_id: this.selectedCategory,
                 collection_id: this.selectedCollection,
