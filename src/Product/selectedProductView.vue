@@ -1,41 +1,49 @@
 <template>
   <div class="p-4">
-    <div class="flex container align-middle justify-center">
+    <div class="flex max-sm:flex-col container align-middle justify-center">
       <div>
         <div>
           <img
             :src="getImgUrl(product.product_img)"
             alt="Product Image"
-            class="w-full h-64 object-cover"
+            class="object-cover w-[800px] h-[600px] max-sm:w-[500px] max-sm:h-[300px]"
           />
         </div>
       </div>
       <div>
-        <div class="p-6">
-          <h1 class="text-2xl font-bold text-gray-800 mb-2">
+        <div class="max-sm:pt-2 p-6">
+          <div class="flex justify-between">
+            <p class="text-sm text-gray-500 mb-4 max-sm:text-xs max-sm:mb-0">
+              Code: {{ product.sku }}
+            </p>
+            <p class="text-sm text-gray-500 mb-4 max-sm:text-xs max-sm:mb-0">
+              status
+            </p>
+          </div>
+          <h1 class="text-2xl font-bold text-gray-800 mb-2 max-sm:text-sm">
             {{ product.name }}
           </h1>
-          <p class="text-sm text-gray-500 mb-4">Code: {{ product.sku }}</p>
-          <p class="text-sm text-gray-500 mb-4">
+
+          <p class="text-sm text-gray-500 mb-4 max-sm:text-xs max-sm:mb-0">
             Factory Part #: {{ product.factory_part_num }}
           </p>
-          <p class="text-xl text-gray-700 font-bold">
+          <p class="text-xl text-gray-700 font-bold max-sm:text-sm">
             {{ changeMonetaryFormat(product.price) }}
           </p>
-          <p class="text-gray-600 mt-4">
-            {{ product.description || "No description available." }}
-          </p>
-          <div class="justify-between flex p-2 align-middle">
+
+          <div class="justify-between flex align-middle mt-5 max-sm:mt-2">
             <button
-              class="w-[400px] hover:bg-yellow-600 text-black py-2 px-4 rounded-lg border border-black-500 hover:text-white hover:border-white"
+              class="w-[500px] hover:bg-yellow-500 text-white py-2 bg-yellow-600 px-4 rounded-lg border border-orange-500 hover:text-white hover:border-white max-sm:text-sm text-1xl"
             >
               Order Now
             </button>
             <button>
-              <i class="pi pi-shopping-cart py-2 px-4 text-4xl"></i>
+              <i
+                class="pi pi-shopping-cart py-2 pl-2 text-4xl max-sm:text-3xl"
+              ></i>
             </button>
             <button>
-              <i class="pi pi-heart py-2 px-4 text-4xl"></i>
+              <i class="pi pi-heart py-2 px-2 text-4xl max-sm:text-3xl"></i>
             </button>
           </div>
         </div>
@@ -88,7 +96,7 @@ export default {
   beforeRouteUpdate(to, from, next) {
     if (to.params.id !== this.productId) {
       this.productId = to.params.id;
-      this.fetchProduct();
+      this.fetchProduct(); // Re-fetch product data
     }
     next();
   },

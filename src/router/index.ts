@@ -38,6 +38,11 @@ const routes = [
       
         props: true,
       },
+      {
+        path: "/search",
+        name: "search",
+        component: () => import("../Product/SearchItemView.vue"),
+      },
     ]
   },
   {

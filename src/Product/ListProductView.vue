@@ -1,11 +1,23 @@
 <template>
-  <div class="flex flex-col sm:flex-row p-4 gap-4">
+  <div class="flex flex-col sm:flex-row p-4 gap-4 shadow-md">
     <div class="flex-1 flex flex-col sm:flex-row h-auto max-h-full gap-4">
       <div class="flex-1 flex flex-col bg-white p-8 space-y-4">
-        <div class="flex items-center mb-2">
-          <p class="font-bold">Product List</p>
+        <div class="flex items-center mb-4">
+          <p class="font-bold flex-1">Product List</p>
+          <!-- Search Input -->
+          <div class="flex items-center gap-2">
+            <input
+              type="text"
+              placeholder="Search by name"
+              class="border rounded-lg py-2 px-4 w-64"
+            />
+            <button
+              class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+            >
+              Search
+            </button>
+          </div>
         </div>
-
         <div class="flex flex-wrap gap-4 p-4">
           <div
             v-for="product in alldata"
@@ -22,21 +34,22 @@
                 class="w-full h-48 object-cover"
               />
               <div class="p-4">
-                <h3 class="text-lg font-semibold text-gray-800">
+                <h3 class="text-lg font-semibold text-gray-800 max-sm:text-sm">
                   {{ product.name }}
                 </h3>
-                <p class="text-sm text-gray-500 mb-2">
+                <p class="text-sm text-gray-500 mb-2 max-sm:text-xs">
                   Code: {{ product.sku }}
                 </p>
-                <p class="text-lg text-gray-700 font-bold">
+                <p class="text-lg text-gray-700 font-bold max-sm:text-xs">
                   {{ changeMonetaryFormat(product.price) }}
                 </p>
-                <button
-                  class="mt-4 w-full text-black border border-black-500 py-2 rounded-lg hover:bg-yellow-600 hover:text-white hover:border-white"
-                  @click="openAddModal('edit', product.id)"
-                >
-                  View Details
-                </button>
+                <div class="flex justify-between">
+                  <button
+                    class="w-full text-black border border-black-500 py-2 rounded-lg hover:bg-yellow-600 hover:text-white max-sm:text-xs hover:border-white"
+                  >
+                    Add to cart
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -148,9 +161,7 @@ export default {
   data() {
     return {
       alldata: [],
-
       item_data: {},
-
       page: 1,
       total_cnt: 0,
       total_pages: 0,
@@ -214,6 +225,7 @@ export default {
       this.page = val;
       this.refreshData();
     },
+
     generatePages(val) {
       this.total_cnt = val;
       if (this.page_list.length > 0) this.page_list.splice(0);
@@ -248,6 +260,18 @@ export default {
   },
   mounted: function () {
     this.refreshData();
+  },
+  getAll() {
+    axios
+      .get(
+        `${process.env.VUE_APP_BASE_URL}/products/get_all/${this.page}/${this.page_limit}`
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          this.alldata = response.data[0];
+          this.generatePages(response.data[1]);
+        }
+      });
   },
 };
 </script>

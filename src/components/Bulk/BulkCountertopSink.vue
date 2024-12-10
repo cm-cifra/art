@@ -200,6 +200,7 @@ export default {
                 guarantee: mappedRow.guarantee || null,
                 product_weight: parseFloat(mappedRow.product_weight) || null,
                 package_weight: parseFloat(mappedRow.package_weight) || null,
+                datetime_modified: new Date().toISOString(),
                 scheme: mappedRow.scheme || null,
               });
             });

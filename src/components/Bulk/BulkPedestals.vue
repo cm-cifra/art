@@ -1,6 +1,6 @@
 <template>
   <div class="p-6 bg-gray-50 min-h-screen">
-    <h1 class="text-2xl font-bold mb-4">Тумба</h1>
+    <h1 class="text-2xl font-bold mb-4">пьедестал</h1>
 
     <div class="border-2 border-dashed border-gray-400 rounded-md p-4">
       <!-- File Input -->
@@ -188,6 +188,7 @@ export default {
                 product_weight: parseFloat(mappedRow.product_weight) || null,
                 package_weight: parseFloat(mappedRow.package_weight) || null,
                 scheme: mappedRow.scheme || null,
+                datetime_modified: new Date().toISOString(),
               });
             });
 
